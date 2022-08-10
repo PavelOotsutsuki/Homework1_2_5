@@ -19,7 +19,7 @@ namespace Homework1_2_5
             float diamondsToGold = 1f/1600;
             float sulfurToDiamonds = 2;
             float diamondsToSulfur = 1f/1;
-            int valueConvert;
+            float valueConvert;
             string goldName = "золото";
             string sulfurName = "серу";
             string diamondName = "алмаз";
@@ -60,11 +60,12 @@ namespace Homework1_2_5
                 Console.WriteLine();
                 Console.Write("Введите вариант обмена: ");
                 choice = Console.ReadLine();
+
                 switch (choice)
                 {
                     case "1":
                         Console.Write("Сколько Вы хотите приобрести серы?: ");
-                        valueConvert = Convert.ToInt32(Console.ReadLine());
+                        valueConvert = Convert.ToSingle(Console.ReadLine());
 
                         if (valueConvert*goldToSulfur>gold)
                         {
@@ -80,25 +81,25 @@ namespace Homework1_2_5
                         Console.ReadKey();
                         break;
                     case "2":
-                        Console.Write("Сколько Вы хотите продать серы?: ");
-                        valueConvert = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Сколько Вы хотите приобрести золота?: ");
+                        valueConvert = Convert.ToSingle(Console.ReadLine());
 
-                        if (valueConvert > sulfur)
+                        if (valueConvert * sulfurToGold > sulfur)
                         {
                             Console.WriteLine("У Вас недостаточно средств! Вы можете обменять алмазы на серу в моем магазине!");
                         }
                         else
                         {
-                            gold += valueConvert * (1/sulfurToGold);
-                            sulfur -= valueConvert;
-                            Console.WriteLine("Обмен успешно совершен! Вы приобрели " + (valueConvert * (1/sulfurToGold)) + " золота!");
+                            sulfur -= valueConvert * sulfurToGold;
+                            gold += valueConvert;
+                            Console.WriteLine("Обмен успешно совершен! Вы приобрели " + valueConvert + " золота!");
                         }
 
                         Console.ReadKey();
                         break;
                     case "3":
                         Console.Write("Сколько Вы хотите приобрести алмазов?: ");
-                        valueConvert = Convert.ToInt32(Console.ReadLine());
+                        valueConvert = Convert.ToSingle(Console.ReadLine());
 
                         if (valueConvert * goldToDiamonds > gold)
                         {
@@ -114,25 +115,25 @@ namespace Homework1_2_5
                         Console.ReadKey();
                         break;
                     case "4":
-                        Console.Write("Сколько Вы хотите продать алмазов?: ");
-                        valueConvert = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Сколько Вы хотите приобрести золота?: ");
+                        valueConvert = Convert.ToSingle(Console.ReadLine());
 
-                        if (valueConvert > diamonds)
+                        if (valueConvert * diamondsToGold > diamonds)
                         {
                             Console.WriteLine("У Вас недостаточно средств! Вы можете обменять серу на алмазы в моем магазине!");
                         }
                         else
                         {
-                            gold += valueConvert * (1/diamondsToGold);
-                            diamonds -= valueConvert;
-                            Console.WriteLine("Обмен успешно совершен! Вы приобрели " + (valueConvert * (1/diamondsToGold)) + " золота!");
+                            sulfur -= valueConvert * diamondsToGold;
+                            gold += valueConvert;
+                            Console.WriteLine("Обмен успешно совершен! Вы приобрели " + valueConvert + " золота!");
                         }
 
                         Console.ReadKey();
                         break;
                     case "5":
                         Console.Write("Сколько Вы хотите приобрести алмазов?: ");
-                        valueConvert = Convert.ToInt32(Console.ReadLine());
+                        valueConvert = Convert.ToSingle(Console.ReadLine());
 
                         if (valueConvert * sulfurToDiamonds > sulfur)
                         {
@@ -148,18 +149,18 @@ namespace Homework1_2_5
                         Console.ReadKey();
                         break;
                     case "6":
-                        Console.Write("Сколько Вы хотите продать алмазов?: ");
-                        valueConvert = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Сколько Вы хотите приобрести серы?: ");
+                        valueConvert = Convert.ToSingle(Console.ReadLine());
 
-                        if (valueConvert > diamonds)
+                        if (valueConvert * diamondsToSulfur > diamonds)
                         {
                             Console.WriteLine("У Вас недостаточно средств! Вы можете обменять золото на алмазы в моем магазине!");
                         }
                         else
                         {
-                            sulfur += valueConvert * (1/diamondsToSulfur);
-                            diamonds -= valueConvert;
-                            Console.WriteLine("Обмен успешно совершен! Вы приобрели " + (valueConvert * (1/diamondsToSulfur)) + " серы!");
+                            diamonds -= valueConvert * diamondsToSulfur;
+                            sulfur += valueConvert;
+                            Console.WriteLine("Обмен успешно совершен! Вы приобрели " + valueConvert + " серы!");
                         }
 
                         Console.ReadKey();
