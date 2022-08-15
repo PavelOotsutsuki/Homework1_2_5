@@ -10,21 +10,22 @@ namespace Homework1_2_5
     {
         static void Main(string[] args)
         {
-            float gold;
-            float sulfur;
-            float diamonds;
+            int oneSulfurToGold = 800;
+            int oneDiamondToGold = 1600;
+            int oneDiamondToSulfur = 1;
             float goldToSulfur = 1000;
-            float sulfurToGold = 1f/800;
+            float sulfurToGold = 1f/oneSulfurToGold;
             float goldToDiamonds = 2000;
-            float diamondsToGold = 1f/1600;
+            float diamondsToGold = 1f/oneDiamondToGold;
             float sulfurToDiamonds = 2;
-            float diamondsToSulfur = 1f/1;
+            float diamondsToSulfur = 1f/oneDiamondToSulfur;
             float valueConvert;
             string goldName = "золото";
             string sulfurName = "серу";
             string diamondName = "алмаз";
             string choice;
-            bool endConvert = false;
+            bool finishConvert = false;
+            float maxValueForConvert;
 
             Console.WriteLine("Добро пожаловать в мою лавку! Здесь вы можете:");
             Console.WriteLine("1. Обменять " + goldName + " на " + sulfurName + " по курсу: " + goldToSulfur);
@@ -35,13 +36,13 @@ namespace Homework1_2_5
             Console.WriteLine("6. Обменять " + diamondName + " на " + sulfurName + " по курсу: " + diamondsToSulfur);
             Console.WriteLine("Введите, сколько у Вас валюты:");
             Console.Write("Золота: ");
-            gold = Convert.ToSingle(Console.ReadLine());
+            float gold = Convert.ToSingle(Console.ReadLine());
             Console.Write("Серы: ");
-            sulfur = Convert.ToSingle(Console.ReadLine());
+            float sulfur = Convert.ToSingle(Console.ReadLine());
             Console.Write("Алмазов: ");
-            diamonds = Convert.ToSingle(Console.ReadLine());
+            float diamonds = Convert.ToSingle(Console.ReadLine());
 
-            while (endConvert==false)
+            while (finishConvert == false)
             {
                 Console.Clear();
                 Console.WriteLine("У Вас: ");
@@ -66,8 +67,9 @@ namespace Homework1_2_5
                     case "1":
                         Console.Write("Сколько Вы хотите приобрести серы?: ");
                         valueConvert = Convert.ToSingle(Console.ReadLine());
+                        maxValueForConvert= valueConvert * goldToSulfur;
 
-                        if (valueConvert*goldToSulfur>gold)
+                        if (maxValueForConvert > gold)
                         {
                             Console.WriteLine("У Вас недостаточно средств! Вы можете обменять алмазы на золото в моем магазине!");
                         }
@@ -83,8 +85,9 @@ namespace Homework1_2_5
                     case "2":
                         Console.Write("Сколько Вы хотите приобрести золота?: ");
                         valueConvert = Convert.ToSingle(Console.ReadLine());
+                        maxValueForConvert = valueConvert * sulfurToGold;
 
-                        if (valueConvert * sulfurToGold > sulfur)
+                        if (maxValueForConvert > sulfur)
                         {
                             Console.WriteLine("У Вас недостаточно средств! Вы можете обменять алмазы на серу в моем магазине!");
                         }
@@ -100,8 +103,9 @@ namespace Homework1_2_5
                     case "3":
                         Console.Write("Сколько Вы хотите приобрести алмазов?: ");
                         valueConvert = Convert.ToSingle(Console.ReadLine());
+                        maxValueForConvert = valueConvert * goldToDiamonds;
 
-                        if (valueConvert * goldToDiamonds > gold)
+                        if (maxValueForConvert > gold)
                         {
                             Console.WriteLine("У Вас недостаточно средств! Вы можете обменять серу на золото в моем магазине!");
                         }
@@ -117,8 +121,9 @@ namespace Homework1_2_5
                     case "4":
                         Console.Write("Сколько Вы хотите приобрести золота?: ");
                         valueConvert = Convert.ToSingle(Console.ReadLine());
+                        maxValueForConvert = valueConvert * diamondsToGold;
 
-                        if (valueConvert * diamondsToGold > diamonds)
+                        if (maxValueForConvert > diamonds)
                         {
                             Console.WriteLine("У Вас недостаточно средств! Вы можете обменять серу на алмазы в моем магазине!");
                         }
@@ -134,8 +139,9 @@ namespace Homework1_2_5
                     case "5":
                         Console.Write("Сколько Вы хотите приобрести алмазов?: ");
                         valueConvert = Convert.ToSingle(Console.ReadLine());
+                        maxValueForConvert = valueConvert * sulfurToDiamonds;
 
-                        if (valueConvert * sulfurToDiamonds > sulfur)
+                        if (maxValueForConvert > sulfur)
                         {
                             Console.WriteLine("У Вас недостаточно средств! Вы можете обменять золото на серу в моем магазине!");
                         }
@@ -151,8 +157,9 @@ namespace Homework1_2_5
                     case "6":
                         Console.Write("Сколько Вы хотите приобрести серы?: ");
                         valueConvert = Convert.ToSingle(Console.ReadLine());
+                        maxValueForConvert = valueConvert * diamondsToSulfur;
 
-                        if (valueConvert * diamondsToSulfur > diamonds)
+                        if (maxValueForConvert > diamonds)
                         {
                             Console.WriteLine("У Вас недостаточно средств! Вы можете обменять золото на алмазы в моем магазине!");
                         }
@@ -167,7 +174,7 @@ namespace Homework1_2_5
                         break;
                     case "Exit":
                         Console.WriteLine("Приходите к нам ещё!");
-                        endConvert = true;
+                        finishConvert = true;
                         break;
                     default:
                         Console.WriteLine("Такого варианта нет, попробуйте снова!");
